@@ -46,7 +46,7 @@ To use GraphB3, download and place the following files in the same directory:
 ## Running GraphB3
 Use the following command to run GraphB3:
 ```bash
-python3 graphb3.py \
+python graphb3.py \
     --input_csv /path/to/bbb_test_smiles_sample.csv \
     --model_weights /path/to/best_mcc_model_weights.pth \
     --results_csv /path/to/results/bbb_example_results.csv \
@@ -70,13 +70,8 @@ If you would like to contribute to GraphB3, feel free to submit an issue or a pu
 
 ---
 
-## License
-Specify the license under which GraphB3 is released (e.g., MIT, Apache 2.0).
-
----
-
 ## Citation
-If you use GraphB3 in your research, please cite the relevant paper (if applicable).
+If you use GraphB3 in your research, please cite the relevant paper (paper link and citation).
 
 ---
 
