@@ -1,4 +1,4 @@
-#GraphB3
+# GraphB3
 
 GraphB3 is a **Graph Convolutional Network (GCN)**-based model designed to predict the **Blood-Brain Barrier (BBB) permeability** of chemical compounds. In addition to predictions, GraphB3 highlights the **substructures** within a compound that contribute to its permeability status (**BBB+ or BBB-**) using **GNNExplainer**.
 
