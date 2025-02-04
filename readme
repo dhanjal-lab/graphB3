@@ -1,0 +1,1 @@
+python3 /path/to/file/graphb3.py     --input_csv /path/to/file/bbb_test_smiles_sample.csv     --model_weights /path/to/file/best_mcc_model_weights.pth     --results_csv /path/to/folder/results_and_substructures/bbb_example_results.csv     --output_dir /path/to/folder/results_and_substructures     > ./output.log &
