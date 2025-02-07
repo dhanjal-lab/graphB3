@@ -45,14 +45,20 @@ except Exception as e:
     print(f"Error reading input CSV file: {e}")
     exit(1)
 
-# Check for invalid SMILES 
+# Check for invalid SMILES
 invalid_smiles = []
 for index, row in test_molecules.iterrows():
     try:
         mol = Chem.MolFromSmiles(row['SMILES'])
         if mol is None:
             invalid_smiles.append(index)
-    except:
+        elif mol.GetNumAtoms() == 1:  # Check if it's a single atom
+            print(f"Warning: SMILES at index {index} represents a single atom, not a compound.")
+            invalid_smiles.append(index)
+    except ValueError as e:
+        print(f"Error processing SMILES at index {index}: {e}")
+        invalid_smiles.append(index)
+    except Exception:
         invalid_smiles.append(index)
 
 if len(invalid_smiles) == len(test_molecules):
@@ -62,8 +68,7 @@ if len(invalid_smiles) == len(test_molecules):
 if invalid_smiles:
     print(f"Warning: Found {len(invalid_smiles)} invalid SMILES in the input file.")
     print("Removing invalid SMILES from the dataset.")
-    test_molecules = test_molecules.drop(invalid_smiles)
-
+    test_molecules = test_molecules.drop(invalid_smiles).reset_index(drop=True)
 
 """ Get DeepChem Features """
 
