@@ -1,4 +1,4 @@
-""" Import Dataset """
+
 
 import sys
 import os
@@ -248,13 +248,15 @@ def set_seed(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
+from tqdm import tqdm
+
 seed = 454
 all_explanations = []
 unfaith_metrics = []
 
 with torch.no_grad():
     with torch.set_grad_enabled(True):
-        for data in test_loader:
+        for data in tqdm(test_loader, desc="Running GNNExplainer"):
             # Set the seed for reproducibility in each iteration
             set_seed(seed)
             
@@ -272,6 +274,7 @@ with torch.no_grad():
             unfaith_metrics.append(metric)
 
         test_explain_all = Batch.from_data_list(all_explanations)
+
 
 
 test_results_df['Unfaith'] = unfaith_metrics
@@ -376,41 +379,23 @@ from rdkit import Chem
 from rdkit.Chem import Draw
 
 def highlight_molecule(smiles, importance_dict, label, image_size=(500, 500), output_filename='nchem_highlight.png'):
-    """
-    Highlights a molecule with different colors based on the importance scores.
-
-    Parameters:
-    smiles (str): SMILES string of the molecule.
-    importance_dict (dict): Dictionary with importance scores and atom indices.
-    label (int): Label of the molecule (1 for default color, 0 for light blue).
-    image_size (tuple): Size of the image (width, height).
-    output_filename (str): Name of the output image file.
-
-    Returns:
-    None
-    """
+    
     # Create molecule from SMILES
     m = Chem.MolFromSmiles(smiles)
 
-    # Define colors
-    light_red = [1.0, 1.0, 1.0]  # Light red
-    dark_red = [1.0, 0.1, 0.1]   # Dark red
-
-    # Generate gradient colors
-    label_1_colors = generate_gradient_colors(light_red, dark_red, 10)
-
-    # Define colors
-    light_blue = [1.0, 1.0, 1.0]  # Light blue
-    dark_blue = [0.2, 0.4, 0.9]  # Dark blue
-
-    # Generate gradient colors
-    label_0_colors = generate_gradient_colors(light_blue, dark_blue, 10)
-
-    # Define color schemes
     if label == 1:
-        gradient_colors = label_1_colors
+            low_importance = [1.0, 0.8, 0.8]
+            medium_importance = [1.0, 0.6, 0.6]
+            high_importance = [1.0, 0.1, 0.1]
     else:
-        gradient_colors = label_0_colors
+        low_importance = [0.6, 0.8, 1.0]
+        medium_importance = [0.4, 0.6, 1.0]
+        high_importance = [0.2, 0.4, 0.9]
+
+    gradient_colors = (
+            generate_gradient_colors(low_importance, medium_importance, 5) +
+            generate_gradient_colors(medium_importance, high_importance, 5)
+        )
     
     # Set sssAtoms property to None initially
     m.__sssAtoms = None
@@ -449,13 +434,3 @@ for idx in test_results_df.index:
     if importance_dict:  # Only generate the image if importance_dict is not empty
         output_filename = os.path.join(output_dir, f'test_chem_{idx}.png')
         highlight_molecule(smiles, importance_dict, label, output_filename=output_filename)
-
-
-
-
-
-
-
-
-
-
