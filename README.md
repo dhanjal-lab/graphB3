@@ -69,7 +69,7 @@ python graphb3.py \
 
 ---
 ## WebServer:
-- Here is the link for the webserver: [https://webs.iiitd.edu.in/dhanjal/graphB3/]([https://webs.iiitd.edu.in/dhanjal/graphB3/)
+- Here is the link for the webserver: [https://webs.iiitd.edu.in/dhanjal/graphB3/](https://webs.iiitd.edu.in/dhanjal/graphB3/)
 
 ---
 
