@@ -1,6 +1,6 @@
-# GraphB3
+# graphB³
 
-GraphB3 is a **Graph Convolutional Network (GCN)**-based model designed to predict the **Blood-Brain Barrier (BBB) permeability** of chemical compounds. In addition to predictions, GraphB3 highlights the **substructures** within a compound that contribute to its permeability status (**BBB+ or BBB-**) using **GNNExplainer**.
+graphB³ is a **Graph Convolutional Network (GCN)**-based model designed to predict the **Blood-Brain Barrier (BBB) permeability** of chemical compounds. In addition to predictions, graphB³ highlights the **substructures** within a compound that contribute to its permeability status (**BBB+ or BBB-**) using **GNNExplainer**.
 
 - **BBB+ (permeable)** substructures are highlighted in **red**.
 - **BBB- (non-permeable)** substructures are highlighted in **blue**.
@@ -13,7 +13,7 @@ GraphB3 is a **Graph Convolutional Network (GCN)**-based model designed to predi
 ---
 
 ## Installation & Dependencies
-GraphB3 has been tested on **Ubuntu 22.04.5 LTS**.
+graphB³ has been tested on **Ubuntu 22.04.5 LTS**.
 
 ### Required Dependencies
 Ensure the following packages are installed:
@@ -35,16 +35,16 @@ pip install numpy pandas matplotlib torch torchmetrics torch_geometric mxnet dee
 
 ## Getting Started
 ### Required Files
-To use GraphB3, download and place the following files in the same directory:
+To use graphB³, download and place the following files in the same directory:
 1. **`deepchem_utils.py`** - Feature extraction from SMILES input.
-2. **`best_mcc_model_weights.pth`** - Pretrained GraphB3 model weights.
-3. **`graphb3.py`** - Main script for running GraphB3.
+2. **`best_mcc_model_weights.pth`** - Pretrained graphB³ model weights.
+3. **`graphb³.py`** - Main script for running graphB³.
 4. **`bbb_test_smiles_sample.csv`** - Input file containing SMILES data.
 
 ---
 
-## Running GraphB3
-Use the following command to run GraphB3:
+## Running graphB³
+Use the following command to run graphB³:
 ```bash
 python graphb3.py \
     --input_csv /path/to/bbb_test_smiles_sample.csv \
@@ -64,14 +64,22 @@ python graphb3.py \
 - **Highlighted substructures** will be stored in the `GraphB3_figures/` directory.
 
 ---
+## Data:
+- The data folder contains the BBB smiles data, which was used to train the model for graphB³
+
+---
+## WebServer:
+- Here is the link for the webserver: [https://webs.iiitd.edu.in/dhanjal/graphB3/]([https://webs.iiitd.edu.in/dhanjal/graphB3/)
+
+---
 
 ## Contributing
-If you would like to contribute to GraphB3, feel free to submit an issue or a pull request.
+If you would like to contribute to graphB³, feel free to submit an issue or a pull request.
 
 ---
 
 ## Citation
-If you use GraphB3 in your research, please cite the relevant paper (paper link and citation).
+If you use graphB³ in your research, please cite the relevant paper (paper link and citation).
 
 ---
 
